@@ -1,0 +1,22 @@
+﻿@charset "utf-8";
+/* CSS Document */
+
+
+#logo1{
+	font-size:28px;
+	font-family:STXinwei;
+	}
+
+#imp{
+	margin-top:100px;		
+	} 
+
+footer{
+	margin-top:120px;
+	}
+canvas{
+	margin:100px;
+	}	
+*{margin:0;padding:0;list-style-type:none;}
+a,img{border:0;}
+body{font:12px "Helvetica Neue",Helvetica,STheiti,微软雅黑,黑体,Arial,Tahoma,sans-serif,serif}
