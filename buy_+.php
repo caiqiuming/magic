@@ -37,11 +37,55 @@
     <img class="sale" src="images/sale.png" alt="Sale"/>
     <div class="preview slides_container">
       <div class="prev_bg"> <!-- 预选图片 -->
-
+      <?php 
+        session_start();
+        if(isset($_GET['id'])){
+           $q=$_SESSION['temp']=$_GET['id'];
+        }
+        else{
+          $q=$_SESSION['temp'];
+        }
+        $one=substr($q,0,-1);//获取url的两位字符
+        $two=substr($q,1);
+        for($i=1;$i<=4;$i++){$_SESSION['temp_q'.$i]=$one.$two.$i;}
+        $_SESSION['temp_q6']="2400";
+        $_SESSION['temp_q7']="2900";
+        $q1=$_SESSION['temp_q1'];
+        $q2=$_SESSION['temp_q2'];
+        $q3=$_SESSION['temp_q3'];
+        $q4=$_SESSION['temp_q4'];        
+        echo "<a  href='images/count/".$q1.".jpg' class='jqzoom' rel='gal1'>";
+        echo "<img src='images/count/".$q1.".jpg' />";
+        echo "</a>";
+      ?>
       </div>
     </div><!-- .prev -->
     <ul class="pagination clearfix" id="thumblist">
-
+        <?php 
+          $q_q="<a href='' class=\"zoomThumbActive\"  rel=\"{gallery: 'gal1', smallimage:'images/count/";
+          $q_1="<a href='' rel=\"{gallery: 'gal1', smallimage:'images/count/";
+          $q_2=".jpg',largeimage:'images/count/";
+          $q_3=".jpg'}\">";
+          echo '<li>';//图片一
+          echo "<a href='' rel=\"{gallery: 'gal1', smallimage:'images/count/".$q1.".jpg',largeimage:'images/count/".$q1.".jpg'}\">";
+          echo "<img src='images/count/".$q1.".jpg' >";
+          echo "</li>"; 
+          echo '<li>';//图片二
+          echo "<a href='' rel=\"{gallery: 'gal1', smallimage:'images/count/".$q2.".jpg',largeimage:'images/count/".$q2.".jpg'}\">";
+          echo "<img src='images/count/".$q2.".jpg' >";
+          echo "</a>";
+          echo "</li>";  
+          echo '<li>';//图片三
+          echo "<a href='' rel=\"{gallery: 'gal1', smallimage:'images/count/".$q3.".jpg',largeimage:'images/count/".$q3.".jpg'}\">";
+          echo "<img src='images/count/".$q3.".jpg' >";
+          echo "</a>";
+          echo "</li>";  
+          echo '<li>';//图片四
+          echo "<a href='' rel=\"{gallery: 'gal1', smallimage:'images/count/".$q4.".jpg',largeimage:'images/count/".$q4.".jpg'}\">";
+          echo "<img src='images/count/".$q4.".jpg' >";
+          echo "</a>";
+          echo "</li>";                              
+        ?>
     </ul>
       <div class="next_prev">        
         <a id="img_prev" class="arows"  ><span> 2017.11.14 </span></a>
@@ -65,14 +109,43 @@
             </div>
           </div><!-- .availability_sku -->
           <div class="price">
-
+          <?php 
+            $q6=$_SESSION['temp_q6'];
+            $q7=$_SESSION['temp_q7'];
+            echo "<div class='price_new'>"."¥".$q6."</div>";
+            echo "<div class='price_old'>"."¥".$q7."</div>";
+          ?> 
           </div><!-- .price -->
         </div><!-- .ava_price -->
         <br><br><br><br><br><br><br><br>  
         <div class="block_cart">
           <div class="obn_like">
             <div class="like">
-
+            <?php 
+            require 'php/connect_db.php';
+            if(isset($_SESSION['name'])){
+              $user_name=$_SESSION['name'];
+              $fav_name=$_SESSION['temp'];                      
+              $sql="SELECT * FROM fav WHERE user_name='$user_name' AND fav_name='$fav_name'";             
+            if(mysqli_num_rows(mysqli_query($conn,$sql))==0){//未收藏时
+                $_SESSION['j_fav']=2;          
+                echo "<a onclick='check_user()' id='fav_1'href='php/favorite_magic.php' class='like'>";
+                echo '加入收藏';
+                echo "</a>";
+              } 
+              else{ //已收藏时
+                $_SESSION['q_fav']=2;
+                echo "<a onclick='check_user()' id='fav_2'href='php/favorite_magic.php' class='like'>";
+                echo '取消收藏';
+                echo "</a>";
+              }
+            }
+            else{//未登录时
+                echo "<a href='' id='fav_3' onclick='check_user()' class='like'>";
+                echo '加入收藏';
+                echo "</a>";
+            }                  
+             ?>
             </div>
 					</div>
 					<div class="cart">
