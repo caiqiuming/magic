@@ -19,14 +19,35 @@
                     <li><a href="index.php" target="_top">首页</a></li>
                 </div>
                 <div class="col-md-1">
-
+                    
+                    <li>
+                    <?php 
+                    session_start();
+                    if (isset($_SESSION['name'])) {
+                        echo '<a  href="php/exit.php"  target="_top" >';
+                        echo '退出';                       
+                        echo '</a>';
+                     } 
+                    else{
+                        echo '<a id="no_login" href="login.php"  target="_top" >';
+                        echo '登录';
+                        echo '</a>';
+                    }
+                    ?>
+                        </a></li>
                 </div>
                 <div class="col-md-1">
                     <li><a id='register' href="register.php" target="_top">注册</a></li>
                 </div>
                 <div class="col-md-6">
                     <center>
-
+                        <?php
+                            if (isset($_SESSION['name'])){
+                            echo "<font size='4'>";
+                            echo '欢迎用户 '.$_SESSION['name'].' 登录！';
+                            echo '</font>';
+                        }else{}
+                        ?>
                     </center>
                 </div>
                 <div class="col-md-1">
