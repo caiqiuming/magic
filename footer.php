@@ -16,7 +16,7 @@
     <center>
             <div style="margin-top:6px;">
                 <font style="color:#FFF;" size="4">
-                    Copyright © 2017 | TBK | All Rights Reserved   
+                    Copyright © 2017 | CQM | All Rights Reserved   
                 </font>
             </div>
     </center>
